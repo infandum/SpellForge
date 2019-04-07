@@ -6,7 +6,7 @@
 
 int main()
 {
-    std::cout << "---The Spell Forge---!\n"; 
+    std::cout << "\n---The Spell Forge---\n"; 
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
