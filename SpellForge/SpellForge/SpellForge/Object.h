@@ -14,6 +14,5 @@ namespace SpellForge
 		Object(Object&& other) = delete;
 		Object& operator=(const Object& other) = delete;
 		Object& operator=(Object&& other) = delete;
-
 	};
 }

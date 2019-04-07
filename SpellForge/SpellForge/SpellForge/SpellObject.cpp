@@ -2,6 +2,13 @@
 #include "SpellObject.h"
 #include "SpellComponent.h"
 
+static int m_NumberOfGameObjects = 0;
+
+SpellForge::SpellObject::SpellObject()
+{
+	m_NumberOfGameObjects++;
+}
+
 void SpellForge::SpellObject::AddComponent(SpellComponent* comp)
 {
 	for (auto& component : m_pSpellComponents)

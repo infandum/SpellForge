@@ -4,13 +4,17 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <memory>
+
 
 namespace SpellForge
 {
+	static unsigned int m_NumberOfGameObjects;
+
 	class SpellObject
 	{
 	public:
-		SpellObject() = default;
+		SpellObject();
 		virtual ~SpellObject() = default;
 		SpellObject(const SpellObject& other) = delete;
 		SpellObject(SpellObject&& other) = delete;
@@ -36,9 +40,10 @@ namespace SpellForge
 			}
 			return nullptr;
 		}
+		
 	private:
 		std::wstring m_Name = L"Spell: " + std::to_wstring(m_NumberOfGameObjects);
 		std::vector<SpellComponent*> m_pSpellComponents;
-		static unsigned int m_NumberOfGameObjects;
+		
 	};
 }
