@@ -2,30 +2,61 @@
 #include "SpellObject.h"
 #include "SpellComponent.h"
 
-void SpellForge::SpellObject::AddComponent(SpellComponent* comp)
+
+unsigned int SpellForge::SpellObject::m_NumberOfSpellObjects = 0;
+
+SpellForge::SpellObject::SpellObject()
+{
+	++m_NumberOfSpellObjects;
+}
+
+SpellForge::SpellObject::~SpellObject()
+{
+	for (auto& m_pSpellComponent : m_pSpellComponents)
+		delete m_pSpellComponent;
+	m_pSpellComponents.clear();
+}
+
+void SpellForge::SpellObject::Update(float deltaTime)
+{
+	UNREFERENCED_PARAMETER(deltaTime);
+}
+
+void SpellForge::SpellObject::Render() const
+{
+
+}
+
+void SpellForge::SpellObject::AddComponent(SpellComponent* pComp)
 {
 	for (auto& component : m_pSpellComponents)
 	{
-		if (typeid(*component) == typeid(*comp))
+		if (typeid(*component) == typeid(*pComp))
 		{
-			std::cout << "Component Duplicate: " << typeid(*comp).name() << " >> Already added!!";
+			std::wcout << L"Component Add:: " << typeid(*pComp).name() << L" >> DUPLICATE!!\n";
+			delete pComp;
 			return;
 		}
 	}
-	m_pSpellComponents.push_back(comp);
-	std::shared_ptr<SpellObject> owner;
-	owner.reset(this);
-	comp->m_pSpellObject = owner;
+	//std::wcout << L"Component Add:: " << typeid(*pComp).name() << L" >> ADDED!!\n";
+	m_pSpellComponents.push_back(pComp);
+	pComp->SetOwner(this);
 }
 
-void SpellForge::SpellObject::RemoveComponent(SpellComponent * pComp)
+void SpellForge::SpellObject::RemoveComponent(SpellComponent* pComp)
 {
-	const auto comp = std::find(m_pSpellComponents.begin(), m_pSpellComponents.end(), pComp);
-	if (comp == m_pSpellComponents.end())
+	for (size_t i = 0; i < m_pSpellComponents.size(); ++i)
 	{
-		std::wcout << L"GameObject::RemoveComponent > Component is not attached to this GameObject!" << std::endl;
-		return;
+		const auto listComp = m_pSpellComponents[i];
+		if (typeid(*listComp) == typeid(*pComp))
+		{
+			//std::cout << "Component Remove:: " << typeid(*pComp).name() << " >> REMOVED!!\n";
+			delete m_pSpellComponents[i];			
+			delete pComp;
+			m_pSpellComponents.erase(m_pSpellComponents.begin() + i);
+			return;
+		}
 	}
-	m_pSpellComponents.erase(comp);
-	pComp->m_pSpellObject = nullptr;
+	delete pComp;
+	std::wcout << L"Component Remove:: " << typeid(*pComp).name() << L" >> NOT ATTACHED!!"<< std::endl;
 }

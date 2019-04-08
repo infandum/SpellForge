@@ -1,12 +1,20 @@
 // SpellForge.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 #include "pch.h"
-#include <vld.h>
-#include <iostream>
+#include "SpellObject.h"
+#include "MagicTypeComponent.h"
+#include "CastTypeComponent.h"
 
 int main()
 {
-    std::cout << "\n---The Spell Forge---\n"; 
+    std::cout << "\n---The Spell Forge---\n";
+	auto obj = std::make_shared<SpellForge::SpellObject>();
+	obj->AddComponent(new SpellForge::CastTypeComponent());
+	obj->AddComponent(new SpellForge::MagicTypeComponent());
+	//obj->AddComponent(new SpellForge::CastTypeComponent());
+	//obj->RemoveComponent(new SpellForge::MagicTypeComponent());
+
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

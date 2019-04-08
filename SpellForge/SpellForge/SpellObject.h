@@ -1,30 +1,32 @@
 #pragma once
-#include "SpellComponent.h"
-#include <typeinfo>
-#include <vector>
-#include <string>
-#include <iostream>
+#include "Object.h"
+
+
 
 namespace SpellForge
 {
-	class SpellObject
+	class SpellComponent;
+	class SpellObject final : public Object
 	{
 	public:
-		SpellObject() = default;
-		virtual ~SpellObject() = default;
+		SpellObject();
+		virtual ~SpellObject();
+
+		void Update(float deltaTime) override;
+		void Render() const override;
+	
 		SpellObject(const SpellObject& other) = delete;
 		SpellObject(SpellObject&& other) = delete;
 		SpellObject& operator=(const SpellObject& other) = delete;
 		SpellObject& operator=(SpellObject&& other) = delete;
 
-		static unsigned int GetObjectCount() { return m_NumberOfGameObjects; }
 		void SetName(std::wstring& name) { m_Name = name; }
 		std::wstring GetName() const { return m_Name; }
+		static unsigned int GetObjectCount() { return m_NumberOfSpellObjects; }
 
-	protected:
-		void AddComponent(SpellComponent* comp);
+		void AddComponent(SpellComponent* pComp);
 		void RemoveComponent(SpellComponent* pComp);
-
+	
 		template <class T>
 		T* GetComponent()
 		{
@@ -36,9 +38,11 @@ namespace SpellForge
 			}
 			return nullptr;
 		}
+
 	private:
-		std::wstring m_Name = L"Spell: " + std::to_wstring(m_NumberOfGameObjects);
 		std::vector<SpellComponent*> m_pSpellComponents;
-		static unsigned int m_NumberOfGameObjects;
+
+		std::wstring m_Name = L"Spell: " + std::to_wstring(m_NumberOfSpellObjects);
+		static unsigned int m_NumberOfSpellObjects;
 	};
 }

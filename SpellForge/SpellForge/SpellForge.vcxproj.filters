@@ -11,6 +11,9 @@
     <Filter Include="SpellObject">
       <UniqueIdentifier>{ebec0144-7b83-4296-9818-4994e6ce3a90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpellComponent">
+      <UniqueIdentifier>{339e995b-1ba1-4093-9da1-a2381b88cf9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpellForge.cpp">
@@ -22,6 +25,12 @@
     <ClCompile Include="SpellObject.cpp">
       <Filter>SpellObject</Filter>
     </ClCompile>
+    <ClCompile Include="MagicTypeComponent.cpp">
+      <Filter>SpellComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="CastTypeComponent.cpp">
+      <Filter>SpellComponent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -30,11 +39,17 @@
     <ClInclude Include="SpellObject.h">
       <Filter>SpellObject</Filter>
     </ClInclude>
-    <ClInclude Include="SpellComponent.h">
-      <Filter>SpellObject</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>SpellObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellComponent.h">
+      <Filter>SpellComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicTypeComponent.h">
+      <Filter>SpellComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="CastTypeComponent.h">
+      <Filter>SpellComponent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
