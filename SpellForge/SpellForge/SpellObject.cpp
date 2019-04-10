@@ -1,13 +1,24 @@
 #include "pch.h"
 #include "SpellObject.h"
 #include "SpellComponent.h"
+#include "MagicTypeComponent.h"
 
 
 unsigned int SpellForge::SpellObject::m_NumberOfSpellObjects = 0;
 
 SpellForge::SpellObject::SpellObject()
 {
+	m_SpellData.id = m_NumberOfSpellObjects;
 	++m_NumberOfSpellObjects;
+}
+
+SpellForge::SpellObject::SpellObject(unsigned int& seed)
+{
+	m_SpellData.id = m_NumberOfSpellObjects;
+	++m_NumberOfSpellObjects;
+	m_Seed = seed;
+	srand(m_Seed);
+	m_UseSeed = true;
 }
 
 SpellForge::SpellObject::~SpellObject()
@@ -15,6 +26,8 @@ SpellForge::SpellObject::~SpellObject()
 	for (auto& m_pSpellComponent : m_pSpellComponents)
 		delete m_pSpellComponent;
 	m_pSpellComponents.clear();
+
+	delete m_SpellData.target;
 }
 
 void SpellForge::SpellObject::Update(float deltaTime)
@@ -25,6 +38,25 @@ void SpellForge::SpellObject::Update(float deltaTime)
 void SpellForge::SpellObject::Render() const
 {
 
+}
+
+SpellForge::SpellData SpellForge::SpellObject::BuildSpell()
+{
+	for (auto& component : m_pSpellComponents)
+	{
+		component->BuildSpell();
+	}
+	m_SpellData.name = m_Name;
+	m_SpellData.magicType = GetComponent<MagicTypeComponent>()->GetMagicType();
+	//Range
+	
+	//Cast Time
+
+	m_SpellData.target = new Target();
+
+	//Damage
+
+	return m_SpellData;
 }
 
 void SpellForge::SpellObject::AddComponent(SpellComponent* pComp)

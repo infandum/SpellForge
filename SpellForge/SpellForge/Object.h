@@ -1,8 +1,9 @@
 #pragma once
+#include "Target.h"
 
 namespace SpellForge
 {
-	class Object
+	class Object : public Target
 	{
 	public:
 		virtual void Update(float deltaTime) = 0;

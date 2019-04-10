@@ -4,13 +4,20 @@
 #include "SpellObject.h"
 #include "MagicTypeComponent.h"
 #include "CastTypeComponent.h"
+#include "RangeTypeComponent.h"
 
 int main()
 {
     std::cout << "\n---The Spell Forge---\n";
-	auto obj = std::make_shared<SpellForge::SpellObject>();
-	obj->AddComponent(new SpellForge::CastTypeComponent());
-	obj->AddComponent(new SpellForge::MagicTypeComponent());
+	auto spell = std::make_shared<SpellForge::SpellObject>();
+	spell->AddComponent(new SpellForge::CastTypeComponent());
+	spell->AddComponent(new SpellForge::MagicTypeComponent());
+	//spell->AddComponent(new SpellForge::MagicTypeComponent(SpellForge::MagicType::MAGIC_FIRE));
+	spell->AddComponent(new SpellForge::RangeTypeComponent());
+	//spell->GetComponent<SpellForge::MagicTypeComponent>()->SetMagicType(SpellForge::MagicType::MAGIC_FIRE);
+
+
+	auto data = spell->BuildSpell();
 	//obj->AddComponent(new SpellForge::CastTypeComponent());
 	//obj->RemoveComponent(new SpellForge::MagicTypeComponent());
 

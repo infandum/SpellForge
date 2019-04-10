@@ -31,6 +31,12 @@
     <ClCompile Include="CastTypeComponent.cpp">
       <Filter>SpellComponent</Filter>
     </ClCompile>
+    <ClCompile Include="RangeTypeComponent.cpp">
+      <Filter>SpellComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Target.cpp">
+      <Filter>SpellObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -50,6 +56,15 @@
     </ClInclude>
     <ClInclude Include="CastTypeComponent.h">
       <Filter>SpellComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeTypeComponent.h">
+      <Filter>SpellComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructs.h">
+      <Filter>SpellObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Target.h">
+      <Filter>SpellObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
