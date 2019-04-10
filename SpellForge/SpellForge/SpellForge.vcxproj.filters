@@ -14,6 +14,9 @@
     <Filter Include="SpellComponent">
       <UniqueIdentifier>{339e995b-1ba1-4093-9da1-a2381b88cf9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FileIO">
+      <UniqueIdentifier>{a49885d8-a116-4bf6-953d-96bf3b9a7445}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpellForge.cpp">
@@ -36,6 +39,9 @@
     </ClCompile>
     <ClCompile Include="Target.cpp">
       <Filter>SpellObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryIO.cpp">
+      <Filter>FileIO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="Target.h">
       <Filter>SpellObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryIO.h">
+      <Filter>FileIO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

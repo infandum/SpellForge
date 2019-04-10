@@ -5,7 +5,7 @@
 namespace SpellForge
 {
 	//TODO: Magic type read from file
-	//TODO: Magic type damage range
+	//TODO: Magic type damage modifier
 	//TODO: Magic type time modifier
 	//TODO: Magic type range modifier
 	//TODO: Magic type duration modifier

@@ -28,6 +28,15 @@ namespace SpellForge
 		MAGIC_TYPE_MAX_COUNT
 	};
 
+	struct MagicData
+	{
+		MagicType type = MagicType::MAGIC_TYPE_MAX_COUNT;
+		float damage = 0.0f;
+		float castModifier = 0.0f;
+		float rangeModifier = 0.0f;
+		float durationModifier = 0.0f;
+	};
+
 	enum class CastType
 	{
 		CAST_PROJECTILE,

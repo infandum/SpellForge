@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryIO.h" />
     <ClInclude Include="CastTypeComponent.h" />
     <ClInclude Include="DataStructs.h" />
     <ClInclude Include="MagicTypeComponent.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Target.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryIO.cpp" />
     <ClCompile Include="CastTypeComponent.cpp" />
     <ClCompile Include="MagicTypeComponent.cpp" />
     <ClCompile Include="pch.cpp">
