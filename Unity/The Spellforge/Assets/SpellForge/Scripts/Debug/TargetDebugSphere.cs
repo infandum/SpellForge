@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetDebugSphere : MonoBehaviour
+namespace SpellForge
 {
-    [SerializeField]
-    private Color _color = Color.white;
-
-    [SerializeField]
-    private float _radius = 1.0f;
-
-
-    void OnDrawGizmosSelected()
+    public class TargetDebugSphere : MonoBehaviour
     {
-        Gizmos.color = _color;
-        Gizmos.DrawSphere(transform.position, _radius);
+        [SerializeField]
+        private Color _color = Color.white;
+
+        [SerializeField]
+        private float _radius = 1.0f;
+
+
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.color = _color;
+            Gizmos.DrawSphere(transform.position, _radius);
+        }
     }
 }

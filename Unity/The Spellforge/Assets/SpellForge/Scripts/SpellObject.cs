@@ -4,54 +4,96 @@ using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SpellObject : MonoBehaviour
+namespace SpellForge
 {
-    public enum SpellType : uint
+    public enum SpellState : uint
     {
-        Hitscan,
-        Projectile,
-        Projectile_Target,
-    }
-    //Target
-    //Event
-    //Stats
-    //
-    #region Unity Methods
-    void OnEnable()
-    {
-       
-        SpellEventManager.StartEventListener("test", Activate);
+        IDLE = 0,
+        START,
+        CHARGE_UP,
+        CHARGE_HOLD,
+        CAST,
+        OVERCHARGED,
+        COOLDOWN,
+        END,
     }
 
-    void OnDisable()
-    {
-        SpellEventManager.StopEventListener("test", Activate);
-    }
-
-    void Awake()
-    {
-
-    }
-
-    void Start()
+    public class SpellObject : MonoBehaviour
     {
         
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown("q"))
+        public Transform testTarget;
+        public enum SpellType : uint
         {
-            SpellEventManager.TriggerEvent("test");
+            Hitscan,
+            Target_Self,
+            Target_Other,
+            Area,
+            Projectile,
+            Projectile_Targeted,
+            Projectile_Area,
         }
 
-    }
+        public enum SpellDeliveryEnum : uint
+        {
+            Hitscan,
+            Projectile,
+            Seeker,
+            Area,
+        }
 
-    #endregion
+        private SpellState _spellState = SpellState.IDLE;
+        public SpellState SpellState { get => _spellState; set => _spellState = value; }
 
-    private void Activate()
-    {
-        SafeDebug.Log("SpellObject >> Activate!");
+        //Target
+        //Event
+        //Stats
+        //
+        #region Unity Methods
+        void OnEnable()
+        {
 
+            //SpellEventManager.StartEventListener("test", Activate);
+        }
+
+        void OnDisable()
+        {
+            //SpellEventManager.StopEventListener("test", Activate);
+        }
+
+        void Awake()
+        {
+
+        }
+
+        void Start()
+        {
+
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown("q"))
+            {
+                SpellEventManager.TriggerEvent("Activate");
+            }
+
+            if (Input.GetKeyDown("r"))
+            {
+                SpellEventManager.TriggerEvent("Init");
+            }
+
+
+            float step = 10 * Time.deltaTime; // calculate distance to move
+            transform.position = Vector3.MoveTowards(transform.position, testTarget.position, step);
+        }
+
+        #endregion
+
+        private void Activate()
+        {
+            //SafeDebug.Log("SpellObject >> Activate!");
+
+        }
     }
 }
+
