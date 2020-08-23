@@ -11,8 +11,10 @@ namespace SpellForge
         IDLE = 0,
         START,
         CHARGE_UP,
-        CHARGE_HOLD,
+        CHARGE_OVER,
+        HOLDING,
         CAST,
+        ACTIVE,
         OVERCHARGED,
         COOLDOWN,
         END,
@@ -41,13 +43,16 @@ namespace SpellForge
             Area,
         }
 
+        public enum SpellTimingEnum : uint
+        {
+            Instant,
+            Casting,
+            Charging,
+        }
+
         private SpellState _spellState = SpellState.IDLE;
         public SpellState SpellState { get => _spellState; set => _spellState = value; }
 
-        //Target
-        //Event
-        //Stats
-        //
         #region Unity Methods
         void OnEnable()
         {
@@ -81,10 +86,6 @@ namespace SpellForge
             {
                 SpellEventManager.TriggerEvent("Init");
             }
-
-
-            float step = 10 * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, testTarget.position, step);
         }
 
         #endregion
